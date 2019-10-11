@@ -34,10 +34,10 @@ basic.forever(function () {
         basic.pause(100)
     }
     if (input.runningTime() > interval) {
+        interval = input.runningTime() + 60000
         BME280.PowerOn()
         basic.pause(500)
-        interval = input.runningTime() + 30000
-        loraBit.sendPacket(loraBit_Confirmed.Uncomfirmed, 99, "" + cayenneLPP.lpp(
+        loraBit.sendPacket(loraBit_Confirmed.Confirmed, 99, "" + cayenneLPP.lpp(
         LPP_DATA_TYPE.Temperature,
         51,
         BME280.temperature(BME280_T.T_C)
@@ -50,7 +50,7 @@ basic.forever(function () {
         53,
         BME280.pressure(BME280_P.hPa)
         ) + cayenneLPP.lpp_upload())
-        BME280.PowerOff()
         loraBit.sleep()
+        BME280.PowerOff()
     }
 })
