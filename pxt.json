@@ -1,0 +1,27 @@
+{
+    "name": "pxt-lorabit_demo_bme280",
+    "dependencies": {
+        "core": "*",
+        "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#8c67260b0a1c1407621dd2d75c99de3179b55220",
+        "radio": "*",
+        "lorabit": "github:ittisris/pxt-lorabit#cfc3b4a3e1b606a6bdfa7cb5f1eda3abeb63265b",
+        "BME280": "github:makecode-extensions/bme280#839a5d67065f634a3fb652c3f9621433a8765bfa"
+    },
+    "description": "",
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "preferredEditor": "blocksprj",
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v2.1.15",
+        "tag": "v2.1.15",
+        "commits": "https://github.com/microsoft/pxt-microbit/commits/6b3b77cf9efa0da65ba0847015736cfc83e4aeef",
+        "target": "2.1.15",
+        "pxt": "5.23.17"
+    }
+}
