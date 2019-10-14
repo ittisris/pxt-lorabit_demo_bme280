@@ -12,7 +12,8 @@ input.onButtonPressed(Button.B, function () {
 loraBit.whenReceived(function () {
     if (loraBit.nacknowledged()) {
         basic.showIcon(IconNames.No)
-        sos = true
+    } else {
+        sos = false
     }
     if (loraBit.getReceivedPort() == 99) {
         cayenneLPP.lpp_update(loraBit.getReceivedPayload())
@@ -20,49 +21,59 @@ loraBit.whenReceived(function () {
     basic.clearScreen()
 })
 input.onPinPressed(TouchPin.P0, function () {
+    interval = input.runningTime()
     sos = true
-    basic.showIcon(IconNames.Square)
+    images.createImage(`
+        . . . . #
+        . . . . #
+        . . . # #
+        . . # # #
+        # # # # #
+        `).scrollImage(1, 50)
 })
+let payload = ""
 let sos = false
+let interval = 0
 led.setBrightness(20)
 BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76)
-let interval = input.runningTime()
+interval = input.runningTime()
 sos = false
 loraBit.Verbose(Verbose_Mode.On)
 cayenneLPP.add_digital(LPP_Direction.Output_Port, DigitalPin.P1)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.Temperature)
 loraBit.param_Config(
 5,
-2,
+7,
 loraBit_ADR.On
 )
 basic.forever(function () {
     while (!(loraBit.available())) {
         basic.pause(100)
     }
-    if (sos) {
-        sos = false
-        loraBit.sendPacket(loraBit_Confirmed.Confirmed, 191, "01")
-    } else {
-        if (input.runningTime() > interval) {
+    if (input.runningTime() > interval) {
+        BME280.PowerOn()
+        basic.pause(500)
+        payload = "" + cayenneLPP.lpp(
+        LPP_DATA_TYPE.Temperature,
+        51,
+        BME280.temperature(BME280_T.T_C)
+        ) + cayenneLPP.lpp(
+        LPP_DATA_TYPE.Humidity,
+        52,
+        BME280.humidity()
+        ) + cayenneLPP.lpp(
+        LPP_DATA_TYPE.Pressure,
+        53,
+        BME280.pressure(BME280_P.hPa)
+        ) + cayenneLPP.lpp_upload()
+        BME280.PowerOff()
+        if (sos) {
+            interval = input.runningTime() + 120000
+            loraBit.sendPacket(loraBit_Confirmed.Confirmed, 191, payload)
+        } else {
             interval = input.runningTime() + 30000
-            BME280.PowerOn()
-            basic.pause(500)
-            loraBit.sendPacket(loraBit_Confirmed.Uncomfirmed, 99, "" + cayenneLPP.lpp(
-            LPP_DATA_TYPE.Temperature,
-            51,
-            BME280.temperature(BME280_T.T_C)
-            ) + cayenneLPP.lpp(
-            LPP_DATA_TYPE.Humidity,
-            52,
-            BME280.humidity()
-            ) + cayenneLPP.lpp(
-            LPP_DATA_TYPE.Pressure,
-            53,
-            BME280.pressure(BME280_P.hPa)
-            ) + cayenneLPP.lpp_upload())
-            loraBit.sleep()
-            BME280.PowerOff()
+            loraBit.sendPacket(loraBit_Confirmed.Uncomfirmed, 99, payload)
         }
+        loraBit.sleep()
     }
 })
