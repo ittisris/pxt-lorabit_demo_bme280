@@ -2,7 +2,7 @@
     "name": "pxt-lorabit_demo_bme280",
     "dependencies": {
         "core": "*",
-        "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#8c67260b0a1c1407621dd2d75c99de3179b55220",
+        "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#41d3d5cac34360a6b618139204d297c191e72821",
         "radio": "*",
         "lorabit": "github:ittisris/pxt-lorabit#cfc3b4a3e1b606a6bdfa7cb5f1eda3abeb63265b",
         "BME280": "github:makecode-extensions/bme280#839a5d67065f634a3fb652c3f9621433a8765bfa"
@@ -13,7 +13,7 @@
         "main.ts",
         "README.md"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "testFiles": [
         "test.ts"
     ],
