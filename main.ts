@@ -13,16 +13,16 @@ loraBit.whenReceived(function () {
     if (loraBit.nacknowledged()) {
         basic.showIcon(IconNames.No)
     } else {
-        sos = false
+        immediate = false
+        basic.clearScreen()
     }
     if (loraBit.getReceivedPort() == 99) {
         cayenneLPP.lpp_update(loraBit.getReceivedPayload())
     }
-    basic.clearScreen()
 })
 input.onPinPressed(TouchPin.P0, function () {
     interval = input.runningTime()
-    sos = true
+    immediate = true
     images.createImage(`
         . . . . #
         . . . . #
@@ -32,12 +32,12 @@ input.onPinPressed(TouchPin.P0, function () {
         `).scrollImage(1, 50)
 })
 let payload = ""
-let sos = false
+let immediate = false
 let interval = 0
 led.setBrightness(20)
 BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76)
 interval = input.runningTime()
-sos = false
+immediate = false
 loraBit.Verbose(Verbose_Mode.On)
 cayenneLPP.add_digital(LPP_Direction.Output_Port, DigitalPin.P1)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.Temperature)
@@ -67,7 +67,7 @@ basic.forever(function () {
         BME280.pressure(BME280_P.hPa)
         ) + cayenneLPP.lpp_upload()
         BME280.PowerOff()
-        if (sos) {
+        if (immediate) {
             interval = input.runningTime() + 120000
             loraBit.sendPacket(loraBit_Confirmed.Confirmed, 191, payload)
         } else {
