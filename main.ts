@@ -14,6 +14,7 @@ loraBit.whenReceived(function () {
         basic.showIcon(IconNames.No)
     } else {
         immediate = false
+        interval = input.runningTime() + 30000
         basic.clearScreen()
     }
     if (loraBit.getReceivedPort() == 99) {
