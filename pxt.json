@@ -4,8 +4,9 @@
         "core": "*",
         "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#41d3d5cac34360a6b618139204d297c191e72821",
         "radio": "*",
-        "lorabit": "github:ittisris/pxt-lorabit#cfc3b4a3e1b606a6bdfa7cb5f1eda3abeb63265b",
-        "BME280": "github:makecode-extensions/bme280#839a5d67065f634a3fb652c3f9621433a8765bfa"
+        "lorabit": "github:ittisris/pxt-lorabit#e5d3e6c17524a415134428655f43ab89b28b5e7b",
+        "BME280": "github:makecode-extensions/bme280#839a5d67065f634a3fb652c3f9621433a8765bfa",
+        "BitBot": "github:4tronix/bitbot#1.2.5"
     },
     "description": "",
     "files": [
@@ -13,7 +14,7 @@
         "main.ts",
         "README.md"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "testFiles": [
         "test.ts"
     ],
