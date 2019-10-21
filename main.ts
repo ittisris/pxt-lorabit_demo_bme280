@@ -42,11 +42,13 @@ immediate = false
 loraBit.Verbose(Verbose_Mode.On)
 cayenneLPP.add_digital(LPP_Direction.Output_Port, DigitalPin.P1)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.Temperature)
+loraBit.reset()
 loraBit.param_Config(
 5,
 7,
 loraBit_ADR.On
 )
+loraBit.join(loraBit_freq_Plan.AS923)
 basic.forever(function () {
     while (!(loraBit.available())) {
         basic.pause(100)
