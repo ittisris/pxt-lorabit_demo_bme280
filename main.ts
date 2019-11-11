@@ -1,10 +1,21 @@
+input.onPinPressed(TouchPin.P0, function () {
+    interval = input.runningTime()
+    immediate = true
+    images.createImage(`
+        . . . . #
+        . . . . #
+        . . . # #
+        . . # # #
+        # # # # #
+        `).scrollImage(1, 50)
+})
 input.onButtonPressed(Button.B, function () {
-    basic.showString("join")
+    basic.showString("join lorabit_demo_001")
     loraBit.reset()
     loraBit.param_OTAA(
     "003D23377585E082",
     "70B3D57ED00219AA",
-    "1F22AD071F8D67F2410EBFFAB6A6B278"
+    "398AD37EB687A225DC5E3E3A8CACB425"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
     basic.clearScreen()
@@ -20,17 +31,6 @@ loraBit.whenReceived(function () {
     if (loraBit.getReceivedPort() == 99) {
         cayenneLPP.lpp_update(loraBit.getReceivedPayload())
     }
-})
-input.onPinPressed(TouchPin.P0, function () {
-    interval = input.runningTime()
-    immediate = true
-    images.createImage(`
-        . . . . #
-        . . . . #
-        . . . # #
-        . . # # #
-        # # # # #
-        `).scrollImage(1, 50)
 })
 let payload = ""
 let immediate = false
