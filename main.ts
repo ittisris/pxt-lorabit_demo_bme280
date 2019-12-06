@@ -58,14 +58,6 @@ basic.forever(function () {
         LPP_DATA_TYPE.Temperature,
         51,
         BME280.temperature(BME280_T.T_C)
-        ) + cayenneLPP.lpp(
-        LPP_DATA_TYPE.Humidity,
-        52,
-        BME280.humidity()
-        ) + cayenneLPP.lpp(
-        LPP_DATA_TYPE.Pressure,
-        53,
-        BME280.pressure(BME280_P.hPa)
         ) + "6265" + loraBit.toHexString(Math.floor(seqNo / 256)) + loraBit.toHexString(seqNo % 256)
         BME280.PowerOff()
         if (immediate) {

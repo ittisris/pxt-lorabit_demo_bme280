@@ -148,11 +148,11 @@
                           <block type="variables_set">
                             <field name="VAR" id="*TES@-B.%G%ci)l)BWmn" variabletype="">payload</field>
                             <value name="VALUE">
-                              <shadow type="math_number">
+                              <shadow type="math_number" id="mDuo(8wGgA^{D~Bsfx6;">
                                 <field name="NUM">0</field>
                               </shadow>
                               <block type="text_join" inline="false">
-                                <mutation items="7"></mutation>
+                                <mutation items="5"></mutation>
                                 <value name="ADD0">
                                   <shadow type="text">
                                     <field name="TEXT"></field>
@@ -179,47 +179,11 @@
                                 </value>
                                 <value name="ADD2">
                                   <shadow type="text">
-                                    <field name="TEXT"></field>
-                                  </shadow>
-                                  <block type="cayenneLPP_lpp">
-                                    <field name="llpType">LPP_DATA_TYPE.Humidity</field>
-                                    <value name="channel">
-                                      <shadow type="math_number_minmax">
-                                        <mutation min="1" max="253" label="Number"></mutation>
-                                        <field name="SLIDER">52</field>
-                                      </shadow>
-                                    </value>
-                                    <value name="value">
-                                      <block type="BME280_GET_HUMIDITY"></block>
-                                    </value>
-                                  </block>
-                                </value>
-                                <value name="ADD3">
-                                  <shadow type="text">
-                                    <field name="TEXT"></field>
-                                  </shadow>
-                                  <block type="cayenneLPP_lpp">
-                                    <field name="llpType">LPP_DATA_TYPE.Pressure</field>
-                                    <value name="channel">
-                                      <shadow type="math_number_minmax">
-                                        <mutation min="1" max="253" label="Number"></mutation>
-                                        <field name="SLIDER">53</field>
-                                      </shadow>
-                                    </value>
-                                    <value name="value">
-                                      <block type="BME280_GET_PRESSURE">
-                                        <field name="u">BME280_P.hPa</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                                <value name="ADD4">
-                                  <shadow type="text">
                                     <field name="TEXT">6265</field>
                                   </shadow>
                                 </value>
-                                <value name="ADD5">
-                                  <shadow type="text">
+                                <value name="ADD3">
+                                  <shadow type="text" id="K_xW5s;V0{EDufWX},tx">
                                     <field name="TEXT"></field>
                                   </shadow>
                                   <block type="loraBit_toHexString">
@@ -255,8 +219,8 @@
                                     </value>
                                   </block>
                                 </value>
-                                <value name="ADD6">
-                                  <shadow type="text">
+                                <value name="ADD4">
+                                  <shadow type="text" id="5XwX4@VYko0f4_TD$aaz">
                                     <field name="TEXT"></field>
                                   </shadow>
                                   <block type="loraBit_toHexString">
