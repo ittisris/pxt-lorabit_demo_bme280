@@ -33,13 +33,13 @@ input.onPinPressed(TouchPin.P0, function () {
         `).scrollImage(1, 50)
 })
 let payload = ""
-let seqNo = 0
 let immediate = false
 let interval = 0
 led.setBrightness(20)
 BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76)
 interval = input.runningTime()
 immediate = false
+let seqNo = 0
 loraBit.Verbose(Verbose_Mode.On)
 loraBit.param_Config(
 5,

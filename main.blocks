@@ -38,23 +38,33 @@
                       </block>
                     </value>
                     <next>
-                      <block type="loraBit_Verbose">
-                        <field name="mode">Verbose_Mode.On</field>
+                      <block type="variables_set">
+                        <field name="VAR" id="RNH_h}T?FIFl/FHh1Bl^" variabletype="">seqNo</field>
+                        <value name="VALUE">
+                          <shadow type="math_number">
+                            <field name="NUM">0</field>
+                          </shadow>
+                        </value>
                         <next>
-                          <block type="loraBit_param_Config">
-                            <field name="ADR">loraBit_ADR.On</field>
-                            <value name="Datarate">
-                              <shadow type="math_number_minmax">
-                                <mutation min="0" max="6" label="Number"></mutation>
-                                <field name="SLIDER">5</field>
-                              </shadow>
-                            </value>
-                            <value name="Retrans">
-                              <shadow type="math_number_minmax">
-                                <mutation min="0" max="7" label="Number"></mutation>
-                                <field name="SLIDER">7</field>
-                              </shadow>
-                            </value>
+                          <block type="loraBit_Verbose">
+                            <field name="mode">Verbose_Mode.On</field>
+                            <next>
+                              <block type="loraBit_param_Config">
+                                <field name="ADR">loraBit_ADR.On</field>
+                                <value name="Datarate">
+                                  <shadow type="math_number_minmax">
+                                    <mutation min="0" max="6" label="Number"></mutation>
+                                    <field name="SLIDER">5</field>
+                                  </shadow>
+                                </value>
+                                <value name="Retrans">
+                                  <shadow type="math_number_minmax">
+                                    <mutation min="0" max="7" label="Number"></mutation>
+                                    <field name="SLIDER">7</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </next>
                           </block>
                         </next>
                       </block>
