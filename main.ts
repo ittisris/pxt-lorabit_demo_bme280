@@ -1,6 +1,6 @@
-function SendImmediate() {
-    conf = true
+function SendImmediate () {
     interval = input.runningTime()
+    conf = true
     images.createImage(`
         . . . . #
         . . . . #
@@ -28,9 +28,9 @@ loraBit.whenReceived(function () {
 input.onButtonPressed(Button.AB, function () {
     loraBit.reset()
     loraBit.param_OTAA(
-        "003D23377585E082",
-        "70B3D57ED00219AA",
-        "398AD37EB687A225DC5E3E3A8CACB425"
+    "003D23377585E082",
+    "70B3D57ED00219AA",
+    "398AD37EB687A225DC5E3E3A8CACB425"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
     basic.showString("join lorabit_demo_002")
@@ -52,18 +52,19 @@ cayenneLPP.add_digital(LPP_Direction.Output_Port, DigitalPin.P1)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.Temperature)
 BME280.Address(BME280_I2C_ADDRESS.ADDR_0x76)
 interval = input.runningTime()
+conf = false
 loraBit.Verbose(Verbose_Mode.On)
 loraBit.reset()
 loraBit.param_Config(
-    2,
-    7,
-    loraBit_ADR.On
+2,
+7,
+loraBit_ADR.On
 )
 if (false) {
     loraBit.param_ABP(
-        "260413F9",
-        "7397A4B87CC59FF4C9118C3A23E78C54",
-        "AD08530B092DEF1AD58478547F17825C"
+    "260413F9",
+    "7397A4B87CC59FF4C9118C3A23E78C54",
+    "AD08530B092DEF1AD58478547F17825C"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
 }
@@ -78,12 +79,16 @@ basic.forever(function () {
         basic.pause(500)
         seqno += 1
         payload = "" + cayenneLPP.lpp_upload() + cayenneLPP.lpp(
-            LPP_DATA_TYPE.Temperature,
-            51,
-            BME280.temperature(BME280_T.T_C)
+        LPP_DATA_TYPE.Temperature,
+        51,
+        BME280.temperature(BME280_T.T_C)
         ) + "6265" + loraBit.toHexString(Math.floor(seqno / 256)) + loraBit.toHexString(seqno % 256)
         BME280.PowerOff()
-        loraBit.sendPacket(loraBit_Confirmed.Confirmed, 99, payload)
         loraBit.sleep()
+        if (conf) {
+            loraBit.sendPacket(loraBit_Confirmed.Confirmed, 99, payload)
+        } else {
+            loraBit.sendPacket(loraBit_Confirmed.Uncomfirmed, 99, payload)
+        }
     }
 })
