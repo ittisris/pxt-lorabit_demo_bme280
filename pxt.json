@@ -4,7 +4,7 @@
         "core": "*",
         "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#41d3d5cac34360a6b618139204d297c191e72821",
         "radio": "*",
-        "lorabit": "github:ittisris/pxt-lorabit#f4d356d3ae4681c6b5e28926bb2ca188e2feb585"
+        "lorabit": "github:ittisris/pxt-lorabit#7c3027de7388501bd8b5287ab9f8a9e95a23afd2"
     },
     "description": "",
     "files": [
