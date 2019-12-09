@@ -1,12 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables>
-    <variable type="" id="mDq^y{eMnvK6M*%W5y,`">result</variable>
-    <variable type="" id="`?LKd#UyG4xUe6$)0Q)A">interval</variable>
-    <variable type="" id="=Rh(TlLocwo:IEQX,JNn">seqno</variable>
-    <variable type="" id="?1jqG5OQdcRPPPn8CXiy">payload</variable>
-    <variable type="" id="L~1f(ledi$Pi2K.Y@gE@">conf</variable>
+    <variable type="" id="I`U2B(l.2a@=6q{:;W/k">interval</variable>
+    <variable type="" id=",I;S/BaEEH52CjU/Yexz">conf</variable>
+    <variable type="" id="4a[pv6|D)V4Z/21WpFYT">result</variable>
+    <variable type="" id="$~%NEd;b4..U`2UO?V^7">seqno</variable>
+    <variable type="" id="1av_-+PAKoSq:h@n(]..">payload</variable>
   </variables>
-  <block type="pxt-on-start" x="19" y="16">
+  <block type="pxt-on-start" x="20" y="20">
     <statement name="HANDLER">
       <block type="device_set_brightness">
         <value name="value">
@@ -23,360 +23,51 @@
               <block type="cayenneLPP_add_sensor">
                 <field name="sensor">LPP_Bit_Sensor.Temperature</field>
                 <next>
-                  <block type="BME280_SET_ADDRESS">
-                    <field name="addr">BME280_I2C_ADDRESS.ADDR_0x76</field>
-                    <next>
-                      <block type="variables_set">
-                        <field name="VAR" id="`?LKd#UyG4xUe6$)0Q)A" variabletype="">interval</field>
-                        <value name="VALUE">
-                          <shadow type="math_number">
-                            <field name="NUM">0</field>
-                          </shadow>
-                          <block type="device_get_running_time"></block>
-                        </value>
-                        <next>
-                          <block type="variables_set">
-                            <field name="VAR" id="L~1f(ledi$Pi2K.Y@gE@" variabletype="">conf</field>
-                            <value name="VALUE">
-                              <shadow type="math_number" id="V6zCl=p-yupkC;=A;!m0">
-                                <field name="NUM">0</field>
-                              </shadow>
-                              <block type="logic_boolean">
-                                <field name="BOOL">FALSE</field>
-                              </block>
-                            </value>
-                            <next>
-                              <block type="loraBit_Verbose">
-                                <field name="mode">Verbose_Mode.On</field>
-                                <next>
-                                  <block type="LoraBit_reset">
-                                    <next>
-                                      <block type="loraBit_param_Config">
-                                        <field name="ADR">loraBit_ADR.On</field>
-                                        <value name="Datarate">
-                                          <shadow type="math_number_minmax">
-                                            <mutation min="0" max="6" label="Number"></mutation>
-                                            <field name="SLIDER">2</field>
-                                          </shadow>
-                                        </value>
-                                        <value name="Retrans">
-                                          <shadow type="math_number_minmax">
-                                            <mutation min="0" max="7" label="Number"></mutation>
-                                            <field name="SLIDER">7</field>
-                                          </shadow>
-                                        </value>
-                                        <next>
-                                          <block type="controls_if">
-                                            <value name="IF0">
-                                              <shadow type="logic_boolean">
-                                                <field name="BOOL">FALSE</field>
-                                              </shadow>
-                                            </value>
-                                            <statement name="DO0">
-                                              <block type="loraBit_param_ABP">
-                                                <value name="DevAddr">
-                                                  <shadow type="text">
-                                                    <field name="TEXT">260413F9</field>
-                                                  </shadow>
-                                                </value>
-                                                <value name="NwkSKey">
-                                                  <shadow type="text">
-                                                    <field name="TEXT">7397A4B87CC59FF4C9118C3A23E78C54</field>
-                                                  </shadow>
-                                                </value>
-                                                <value name="AppSKey">
-                                                  <shadow type="text">
-                                                    <field name="TEXT">AD08530B092DEF1AD58478547F17825C</field>
-                                                  </shadow>
-                                                </value>
-                                                <next>
-                                                  <block type="loraBit_join">
-                                                    <field name="freq">loraBit_freq_Plan.AS923</field>
-                                                  </block>
-                                                </next>
-                                              </block>
-                                            </statement>
-                                          </block>
-                                        </next>
-                                      </block>
-                                    </next>
-                                  </block>
-                                </next>
-                              </block>
-                            </next>
-                          </block>
-                        </next>
-                      </block>
-                    </next>
-                  </block>
-                </next>
-              </block>
-            </next>
-          </block>
-        </next>
-      </block>
-    </statement>
-  </block>
-  <block type="device_forever" x="546" y="10">
-    <statement name="HANDLER">
-      <block type="device_while">
-        <value name="COND">
-          <shadow type="logic_boolean">
-            <field name="BOOL">TRUE</field>
-          </shadow>
-          <block type="logic_negate">
-            <value name="BOOL">
-              <shadow type="logic_boolean">
-                <field name="BOOL">TRUE</field>
-              </shadow>
-              <block type="loraBit_available"></block>
-            </value>
-          </block>
-        </value>
-        <statement name="DO">
-          <block type="device_pause">
-            <value name="pause">
-              <shadow type="timePicker">
-                <field name="ms">100</field>
-              </shadow>
-            </value>
-          </block>
-        </statement>
-        <next>
-          <block type="controls_if">
-            <value name="IF0">
-              <shadow type="logic_boolean">
-                <field name="BOOL">TRUE</field>
-              </shadow>
-              <block type="logic_compare">
-                <field name="OP">GT</field>
-                <value name="A">
-                  <shadow type="math_number">
-                    <field name="NUM">0</field>
-                  </shadow>
-                  <block type="device_get_running_time"></block>
-                </value>
-                <value name="B">
-                  <shadow type="math_number">
-                    <field name="NUM">0</field>
-                  </shadow>
-                  <block type="variables_get">
-                    <field name="VAR" id="`?LKd#UyG4xUe6$)0Q)A" variabletype="">interval</field>
-                  </block>
-                </value>
-              </block>
-            </value>
-            <statement name="DO0">
-              <block type="variables_set">
-                <field name="VAR" id="`?LKd#UyG4xUe6$)0Q)A" variabletype="">interval</field>
-                <value name="VALUE">
-                  <shadow type="math_number">
-                    <field name="NUM">0</field>
-                  </shadow>
-                  <block type="math_arithmetic">
-                    <field name="OP">ADD</field>
-                    <value name="A">
+                  <block type="variables_set">
+                    <field name="VAR" id="I`U2B(l.2a@=6q{:;W/k" variabletype="">interval</field>
+                    <value name="VALUE">
                       <shadow type="math_number">
                         <field name="NUM">0</field>
                       </shadow>
                       <block type="device_get_running_time"></block>
                     </value>
-                    <value name="B">
-                      <shadow type="math_number">
-                        <field name="NUM">30000</field>
-                      </shadow>
-                    </value>
-                  </block>
-                </value>
-                <next>
-                  <block type="variables_change">
-                    <field name="VAR" id="=Rh(TlLocwo:IEQX,JNn" variabletype="">seqno</field>
-                    <value name="VALUE">
-                      <shadow type="math_number">
-                        <field name="NUM">1</field>
-                      </shadow>
-                    </value>
                     <next>
-                      <block type="BME280_POWER_ON">
+                      <block type="variables_set">
+                        <field name="VAR" id=",I;S/BaEEH52CjU/Yexz" variabletype="">conf</field>
+                        <value name="VALUE">
+                          <shadow type="math_number">
+                            <field name="NUM">0</field>
+                          </shadow>
+                          <block type="logic_boolean">
+                            <field name="BOOL">FALSE</field>
+                          </block>
+                        </value>
                         <next>
-                          <block type="device_pause">
-                            <value name="pause">
-                              <shadow type="timePicker">
-                                <field name="ms">500</field>
+                          <block type="variables_set">
+                            <field name="VAR" id="$~%NEd;b4..U`2UO?V^7" variabletype="">seqno</field>
+                            <value name="VALUE">
+                              <shadow type="math_number">
+                                <field name="NUM">0</field>
                               </shadow>
                             </value>
                             <next>
-                              <block type="variables_change">
-                                <field name="VAR" id="=Rh(TlLocwo:IEQX,JNn" variabletype="">seqno</field>
-                                <value name="VALUE">
-                                  <shadow type="math_number">
-                                    <field name="NUM">1</field>
-                                  </shadow>
-                                </value>
+                              <block type="loraBit_Verbose">
+                                <field name="mode">Verbose_Mode.On</field>
                                 <next>
-                                  <block type="variables_set">
-                                    <field name="VAR" id="?1jqG5OQdcRPPPn8CXiy" variabletype="">payload</field>
-                                    <value name="VALUE">
-                                      <shadow type="math_number">
-                                        <field name="NUM">0</field>
+                                  <block type="loraBit_param_Config">
+                                    <field name="ADR">loraBit_ADR.On</field>
+                                    <value name="Datarate">
+                                      <shadow type="math_number_minmax">
+                                        <mutation min="0" max="6" label="Number"></mutation>
+                                        <field name="SLIDER">2</field>
                                       </shadow>
-                                      <block type="text_join" inline="false">
-                                        <mutation items="6"></mutation>
-                                        <value name="ADD0">
-                                          <shadow type="text">
-                                            <field name="TEXT"></field>
-                                          </shadow>
-                                        </value>
-                                        <value name="ADD1">
-                                          <shadow type="text">
-                                            <field name="TEXT"></field>
-                                          </shadow>
-                                          <block type="cayenneLPP_lpp_upload"></block>
-                                        </value>
-                                        <value name="ADD2">
-                                          <shadow type="text">
-                                            <field name="TEXT"></field>
-                                          </shadow>
-                                          <block type="cayenneLPP_lpp">
-                                            <field name="llpType">LPP_DATA_TYPE.Temperature</field>
-                                            <value name="channel">
-                                              <shadow type="math_number_minmax">
-                                                <mutation min="1" max="253" label="Number"></mutation>
-                                                <field name="SLIDER">51</field>
-                                              </shadow>
-                                            </value>
-                                            <value name="value">
-                                              <block type="BME280_GET_TEMPERATURE">
-                                                <field name="u">BME280_T.T_C</field>
-                                              </block>
-                                            </value>
-                                          </block>
-                                        </value>
-                                        <value name="ADD3">
-                                          <shadow type="text">
-                                            <field name="TEXT">6265</field>
-                                          </shadow>
-                                        </value>
-                                        <value name="ADD4">
-                                          <shadow type="text">
-                                            <field name="TEXT"></field>
-                                          </shadow>
-                                          <block type="loraBit_toHexString">
-                                            <value name="num">
-                                              <shadow type="math_number_minmax">
-                                                <mutation min="0" max="255"></mutation>
-                                                <field name="SLIDER">0</field>
-                                              </shadow>
-                                              <block type="math_js_round">
-                                                <field name="OP">floor</field>
-                                                <value name="ARG0">
-                                                  <shadow type="math_number">
-                                                    <field name="NUM">0</field>
-                                                  </shadow>
-                                                  <block type="math_arithmetic">
-                                                    <field name="OP">DIVIDE</field>
-                                                    <value name="A">
-                                                      <shadow type="math_number">
-                                                        <field name="NUM">0</field>
-                                                      </shadow>
-                                                      <block type="variables_get">
-                                                        <field name="VAR" id="=Rh(TlLocwo:IEQX,JNn" variabletype="">seqno</field>
-                                                      </block>
-                                                    </value>
-                                                    <value name="B">
-                                                      <shadow type="math_number">
-                                                        <field name="NUM">256</field>
-                                                      </shadow>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
-                                          </block>
-                                        </value>
-                                        <value name="ADD5">
-                                          <shadow type="text">
-                                            <field name="TEXT"></field>
-                                          </shadow>
-                                          <block type="loraBit_toHexString">
-                                            <value name="num">
-                                              <shadow type="math_number_minmax">
-                                                <mutation min="0" max="255"></mutation>
-                                                <field name="SLIDER">0</field>
-                                              </shadow>
-                                              <block type="math_modulo">
-                                                <value name="DIVIDEND">
-                                                  <shadow type="math_number">
-                                                    <field name="NUM">0</field>
-                                                  </shadow>
-                                                  <block type="variables_get">
-                                                    <field name="VAR" id="=Rh(TlLocwo:IEQX,JNn" variabletype="">seqno</field>
-                                                  </block>
-                                                </value>
-                                                <value name="DIVISOR">
-                                                  <shadow type="math_number">
-                                                    <field name="NUM">256</field>
-                                                  </shadow>
-                                                </value>
-                                              </block>
-                                            </value>
-                                          </block>
-                                        </value>
-                                      </block>
                                     </value>
-                                    <next>
-                                      <block type="BME280_POWER_OFF">
-                                        <next>
-                                          <block type="loraBit_sleep">
-                                            <next>
-                                              <block type="controls_if">
-                                                <mutation else="1"></mutation>
-                                                <value name="IF0">
-                                                  <shadow type="logic_boolean" id="MtCjmcYKL4`{0~G3M9zE">
-                                                    <field name="BOOL">TRUE</field>
-                                                  </shadow>
-                                                  <block type="variables_get">
-                                                    <field name="VAR" id="L~1f(ledi$Pi2K.Y@gE@" variabletype="">conf</field>
-                                                  </block>
-                                                </value>
-                                                <statement name="DO0">
-                                                  <block type="loraBit_sendPacket">
-                                                    <field name="confirmed">loraBit_Confirmed.Confirmed</field>
-                                                    <value name="port">
-                                                      <shadow type="math_number_minmax">
-                                                        <mutation min="1" max="253" label="Number"></mutation>
-                                                        <field name="SLIDER">99</field>
-                                                      </shadow>
-                                                    </value>
-                                                    <value name="payload">
-                                                      <block type="variables_get">
-                                                        <field name="VAR" id="?1jqG5OQdcRPPPn8CXiy" variabletype="">payload</field>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </statement>
-                                                <statement name="ELSE">
-                                                  <block type="loraBit_sendPacket">
-                                                    <field name="confirmed">loraBit_Confirmed.Uncomfirmed</field>
-                                                    <value name="port">
-                                                      <shadow type="math_number_minmax">
-                                                        <mutation min="1" max="253" label="Number"></mutation>
-                                                        <field name="SLIDER">99</field>
-                                                      </shadow>
-                                                    </value>
-                                                    <value name="payload">
-                                                      <block type="variables_get">
-                                                        <field name="VAR" id="?1jqG5OQdcRPPPn8CXiy" variabletype="">payload</field>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </statement>
-                                              </block>
-                                            </next>
-                                          </block>
-                                        </next>
-                                      </block>
-                                    </next>
+                                    <value name="Retrans">
+                                      <shadow type="math_number_minmax">
+                                        <mutation min="0" max="7" label="Number"></mutation>
+                                        <field name="SLIDER">7</field>
+                                      </shadow>
+                                    </value>
                                   </block>
                                 </next>
                               </block>
@@ -388,205 +79,13 @@
                   </block>
                 </next>
               </block>
-            </statement>
-          </block>
-        </next>
-      </block>
-    </statement>
-  </block>
-  <block type="function_definition" x="1185" y="16">
-    <mutation name="SendImmediate" functionid="aZzxcnjD`E_*AF5mR2CH"></mutation>
-    <field name="function_title">function</field>
-    <field name="function_name">SendImmediate</field>
-    <statement name="STACK">
-      <block type="variables_set">
-        <field name="VAR" id="`?LKd#UyG4xUe6$)0Q)A" variabletype="">interval</field>
-        <value name="VALUE">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-          <block type="device_get_running_time"></block>
-        </value>
-        <next>
-          <block type="variables_set">
-            <field name="VAR" id="L~1f(ledi$Pi2K.Y@gE@" variabletype="">conf</field>
-            <value name="VALUE">
-              <shadow type="math_number" id="V6zCl=p-yupkC;=A;!m0">
-                <field name="NUM">0</field>
-              </shadow>
-              <block type="logic_boolean">
-                <field name="BOOL">TRUE</field>
-              </block>
-            </value>
-            <next>
-              <block type="device_scroll_image">
-                <value name="sprite">
-                  <block type="device_build_image">
-                    <field name="LEDS">`
-        . . . . # 
-        . . . . # 
-        . . . # # 
-        . . # # # 
-        # # # # #
-        `
-                    </field>
-                  </block>
-                </value>
-                <value name="frameoffset">
-                  <shadow type="math_number">
-                    <field name="NUM">1</field>
-                  </shadow>
-                </value>
-                <value name="delay">
-                  <shadow type="math_number">
-                    <field name="NUM">50</field>
-                  </shadow>
-                </value>
-              </block>
             </next>
           </block>
         </next>
       </block>
     </statement>
   </block>
-  <block type="loraBit_whenReceived" x="1413" y="494">
-    <statement name="HANDLER">
-      <block type="controls_if">
-        <mutation else="1"></mutation>
-        <value name="IF0">
-          <shadow type="logic_boolean">
-            <field name="BOOL">TRUE</field>
-          </shadow>
-          <block type="loraBit_nacknowledged"></block>
-        </value>
-        <statement name="DO0">
-          <block type="basic_show_icon">
-            <field name="i">IconNames.No</field>
-          </block>
-        </statement>
-        <statement name="ELSE">
-          <block type="variables_set">
-            <field name="VAR" id="L~1f(ledi$Pi2K.Y@gE@" variabletype="">conf</field>
-            <value name="VALUE">
-              <shadow type="math_number" id="V6zCl=p-yupkC;=A;!m0">
-                <field name="NUM">0</field>
-              </shadow>
-              <block type="logic_boolean">
-                <field name="BOOL">FALSE</field>
-              </block>
-            </value>
-            <next>
-              <block type="controls_if">
-                <value name="IF0">
-                  <shadow type="logic_boolean">
-                    <field name="BOOL">TRUE</field>
-                  </shadow>
-                  <block type="logic_compare">
-                    <field name="OP">EQ</field>
-                    <value name="A">
-                      <shadow type="math_number">
-                        <field name="NUM">0</field>
-                      </shadow>
-                      <block type="loraBit_getReceivedPort"></block>
-                    </value>
-                    <value name="B">
-                      <shadow type="math_number">
-                        <field name="NUM">99</field>
-                      </shadow>
-                    </value>
-                  </block>
-                </value>
-                <statement name="DO0">
-                  <block type="cayenneLPP_lpp_update">
-                    <value name="payload">
-                      <block type="loraBit_getReceivedPayload"></block>
-                    </value>
-                    <next>
-                      <block type="variables_set">
-                        <field name="VAR" id="mDq^y{eMnvK6M*%W5y,`" variabletype="">result</field>
-                        <value name="VALUE">
-                          <shadow type="math_number">
-                            <field name="NUM">0</field>
-                          </shadow>
-                          <block type="array_indexof">
-                            <value name="list">
-                              <block type="lists_create_with">
-                                <mutation items="2"></mutation>
-                                <value name="ADD0">
-                                  <shadow type="text">
-                                    <field name="TEXT">010000FF</field>
-                                  </shadow>
-                                </value>
-                                <value name="ADD1">
-                                  <shadow type="text">
-                                    <field name="TEXT">010064FF</field>
-                                  </shadow>
-                                </value>
-                              </block>
-                            </value>
-                            <value name="value">
-                              <block type="loraBit_getReceivedPayload"></block>
-                            </value>
-                          </block>
-                        </value>
-                        <next>
-                          <block type="controls_if">
-                            <value name="IF0">
-                              <shadow type="logic_boolean">
-                                <field name="BOOL">TRUE</field>
-                              </shadow>
-                              <block type="logic_compare">
-                                <field name="OP">GTE</field>
-                                <value name="A">
-                                  <shadow type="math_number">
-                                    <field name="NUM">0</field>
-                                  </shadow>
-                                  <block type="variables_get">
-                                    <field name="VAR" id="mDq^y{eMnvK6M*%W5y,`" variabletype="">result</field>
-                                  </block>
-                                </value>
-                                <value name="B">
-                                  <shadow type="math_number">
-                                    <field name="NUM">0</field>
-                                  </shadow>
-                                </value>
-                              </block>
-                            </value>
-                            <statement name="DO0">
-                              <block type="device_show_number">
-                                <value name="number">
-                                  <block type="variables_get">
-                                    <field name="VAR" id="mDq^y{eMnvK6M*%W5y,`" variabletype="">result</field>
-                                  </block>
-                                </value>
-                                <next>
-                                  <block type="device_pause">
-                                    <value name="pause">
-                                      <shadow type="timePicker">
-                                        <field name="ms">200</field>
-                                      </shadow>
-                                    </value>
-                                  </block>
-                                </next>
-                              </block>
-                            </statement>
-                          </block>
-                        </next>
-                      </block>
-                    </next>
-                  </block>
-                </statement>
-              </block>
-            </next>
-          </block>
-        </statement>
-        <next>
-          <block type="device_clear_display"></block>
-        </next>
-      </block>
-    </statement>
-  </block>
-  <block type="device_button_event" x="17" y="1011">
+  <block type="device_button_event" x="435" y="20">
     <field name="NAME">Button.AB</field>
     <statement name="HANDLER">
       <block type="LoraBit_reset">
@@ -629,23 +128,463 @@
       </block>
     </statement>
   </block>
-  <block type="device_gesture_event" x="538" y="1696">
+  <block type="device_forever" x="885" y="13">
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="logic_compare">
+            <field name="OP">GT</field>
+            <value name="A">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="device_get_running_time"></block>
+            </value>
+            <value name="B">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="variables_get">
+                <field name="VAR" id="I`U2B(l.2a@=6q{:;W/k" variabletype="">interval</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="controls_if">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <shadow type="logic_boolean" id="wp!5]8ESxaCgfPR:U|Fr">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+              <block type="logic_negate">
+                <value name="BOOL">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </shadow>
+                  <block type="loraBit_available"></block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="basic_show_icon">
+                <field name="i">IconNames.SmallDiamond</field>
+                <next>
+                  <block type="device_pause">
+                    <value name="pause">
+                      <shadow type="timePicker">
+                        <field name="ms">50</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="device_clear_display"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="variables_change">
+                <field name="VAR" id="$~%NEd;b4..U`2UO?V^7" variabletype="">seqno</field>
+                <value name="VALUE">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="1av_-+PAKoSq:h@n(].." variabletype="">payload</field>
+                    <value name="VALUE">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                      <block type="text_join" inline="false">
+                        <mutation items="5"></mutation>
+                        <value name="ADD0">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                        </value>
+                        <value name="ADD1">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="cayenneLPP_lpp_upload"></block>
+                        </value>
+                        <value name="ADD2">
+                          <shadow type="text">
+                            <field name="TEXT">6265</field>
+                          </shadow>
+                        </value>
+                        <value name="ADD3">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="loraBit_toHexString">
+                            <value name="num">
+                              <shadow type="math_number_minmax">
+                                <mutation min="0" max="255"></mutation>
+                                <field name="SLIDER">0</field>
+                              </shadow>
+                              <block type="math_js_round">
+                                <field name="OP">floor</field>
+                                <value name="ARG0">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="math_arithmetic">
+                                    <field name="OP">DIVIDE</field>
+                                    <value name="A">
+                                      <shadow type="math_number">
+                                        <field name="NUM">0</field>
+                                      </shadow>
+                                      <block type="variables_get">
+                                        <field name="VAR" id="$~%NEd;b4..U`2UO?V^7" variabletype="">seqno</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow type="math_number">
+                                        <field name="NUM">256</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="ADD4">
+                          <shadow type="text">
+                            <field name="TEXT"></field>
+                          </shadow>
+                          <block type="loraBit_toHexString">
+                            <value name="num">
+                              <shadow type="math_number_minmax">
+                                <mutation min="0" max="255"></mutation>
+                                <field name="SLIDER">0</field>
+                              </shadow>
+                              <block type="math_modulo">
+                                <value name="DIVIDEND">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="variables_get">
+                                    <field name="VAR" id="$~%NEd;b4..U`2UO?V^7" variabletype="">seqno</field>
+                                  </block>
+                                </value>
+                                <value name="DIVISOR">
+                                  <shadow type="math_number">
+                                    <field name="NUM">256</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if">
+                        <mutation else="1"></mutation>
+                        <value name="IF0">
+                          <shadow type="logic_boolean">
+                            <field name="BOOL">TRUE</field>
+                          </shadow>
+                          <block type="variables_get">
+                            <field name="VAR" id=",I;S/BaEEH52CjU/Yexz" variabletype="">conf</field>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="loraBit_sendPacket">
+                            <field name="confirmed">loraBit_Confirmed.Confirmed</field>
+                            <value name="port">
+                              <shadow type="math_number_minmax">
+                                <mutation min="1" max="253" label="Number"></mutation>
+                                <field name="SLIDER">99</field>
+                              </shadow>
+                            </value>
+                            <value name="payload">
+                              <block type="variables_get">
+                                <field name="VAR" id="1av_-+PAKoSq:h@n(].." variabletype="">payload</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="loraBit_sendPacket">
+                            <field name="confirmed">loraBit_Confirmed.Uncomfirmed</field>
+                            <value name="port">
+                              <shadow type="math_number_minmax">
+                                <mutation min="1" max="253" label="Number"></mutation>
+                                <field name="SLIDER">99</field>
+                              </shadow>
+                            </value>
+                            <value name="payload">
+                              <block type="variables_get">
+                                <field name="VAR" id="1av_-+PAKoSq:h@n(].." variabletype="">payload</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="variables_set">
+                            <field name="VAR" id="I`U2B(l.2a@=6q{:;W/k" variabletype="">interval</field>
+                            <value name="VALUE">
+                              <shadow type="math_number">
+                                <field name="NUM">0</field>
+                              </shadow>
+                              <block type="math_arithmetic">
+                                <field name="OP">ADD</field>
+                                <value name="A">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="device_get_running_time"></block>
+                                </value>
+                                <value name="B">
+                                  <shadow type="math_number">
+                                    <field name="NUM">30000</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="loraBit_sleep"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+        <next>
+          <block type="device_pause">
+            <value name="pause">
+              <shadow type="timePicker">
+                <field name="ms">1000</field>
+              </shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="function_definition" x="1697" y="36">
+    <mutation name="SendImmediate" functionid="{B%CW-]`a=j[cOSon?Ml"></mutation>
+    <field name="function_title">function</field>
+    <field name="function_name">SendImmediate</field>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="I`U2B(l.2a@=6q{:;W/k" variabletype="">interval</field>
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+          <block type="device_get_running_time"></block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id=",I;S/BaEEH52CjU/Yexz" variabletype="">conf</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <next>
+              <block type="device_scroll_image">
+                <value name="sprite">
+                  <block type="device_build_image">
+                    <field name="LEDS">`
+        . . . . # 
+        . . . . # 
+        . . . # # 
+        . . # # # 
+        # # # # #
+        `
+                    </field>
+                  </block>
+                </value>
+                <value name="frameoffset">
+                  <shadow type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+                <value name="delay">
+                  <shadow type="math_number">
+                    <field name="NUM">50</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="device_gesture_event" x="20" y="728">
     <field name="NAME">Gesture.Shake</field>
     <statement name="HANDLER">
       <block type="function_call">
-        <mutation name="SendImmediate" functionid="aZzxcnjD`E_*AF5mR2CH"></mutation>
+        <mutation name="SendImmediate" functionid="{B%CW-]`a=j[cOSon?Ml"></mutation>
         <field name="function_title">call</field>
         <field name="function_name">SendImmediate</field>
       </block>
     </statement>
   </block>
-  <block type="device_button_event" x="791" y="1696">
+  <block type="device_button_event" x="22" y="888">
     <field name="NAME">Button.A</field>
     <statement name="HANDLER">
       <block type="function_call">
-        <mutation name="SendImmediate" functionid="aZzxcnjD`E_*AF5mR2CH"></mutation>
+        <mutation name="SendImmediate" functionid="{B%CW-]`a=j[cOSon?Ml"></mutation>
         <field name="function_title">call</field>
         <field name="function_name">SendImmediate</field>
+      </block>
+    </statement>
+  </block>
+  <block type="loraBit_whenReceived" x="20" y="1193">
+    <statement name="HANDLER">
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+          <block type="loraBit_nacknowledged"></block>
+        </value>
+        <statement name="DO0">
+          <block type="basic_show_icon">
+            <field name="i">IconNames.No</field>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="variables_set">
+            <field name="VAR" id=",I;S/BaEEH52CjU/Yexz" variabletype="">conf</field>
+            <value name="VALUE">
+              <shadow type="math_number">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="logic_boolean">
+                <field name="BOOL">FALSE</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if">
+                <value name="IF0">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </shadow>
+                  <block type="logic_compare">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                      <block type="loraBit_getReceivedPort"></block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number">
+                        <field name="NUM">99</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="cayenneLPP_lpp_update">
+                    <value name="payload">
+                      <block type="loraBit_getReceivedPayload"></block>
+                    </value>
+                    <next>
+                      <block type="variables_set">
+                        <field name="VAR" id="4a[pv6|D)V4Z/21WpFYT" variabletype="">result</field>
+                        <value name="VALUE">
+                          <shadow type="math_number">
+                            <field name="NUM">0</field>
+                          </shadow>
+                          <block type="array_indexof">
+                            <value name="list">
+                              <block type="lists_create_with">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <shadow type="text">
+                                    <field name="TEXT">010000FF</field>
+                                  </shadow>
+                                </value>
+                                <value name="ADD1">
+                                  <shadow type="text">
+                                    <field name="TEXT">010064FF</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="value">
+                              <block type="loraBit_getReceivedPayload"></block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_if">
+                            <value name="IF0">
+                              <shadow type="logic_boolean">
+                                <field name="BOOL">TRUE</field>
+                              </shadow>
+                              <block type="logic_compare">
+                                <field name="OP">GTE</field>
+                                <value name="A">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                  <block type="variables_get">
+                                    <field name="VAR" id="4a[pv6|D)V4Z/21WpFYT" variabletype="">result</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <shadow type="math_number">
+                                    <field name="NUM">0</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="device_show_number">
+                                <value name="number">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="4a[pv6|D)V4Z/21WpFYT" variabletype="">result</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="device_pause">
+                                    <value name="pause">
+                                      <shadow type="timePicker">
+                                        <field name="ms">200</field>
+                                      </shadow>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="device_clear_display"></block>
+        </next>
       </block>
     </statement>
   </block>
