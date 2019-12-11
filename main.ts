@@ -1,14 +1,38 @@
 input.onButtonPressed(Button.AB, function () {
+    joinOTAA()
+})
+function joinOTAA () {
     loraBit.reset()
+    loraBit.param_Config(
+    2,
+    7,
+    loraBit_ADR.On
+    )
     loraBit.param_OTAA(
     "003D23377585E082",
     "70B3D57ED00219AA",
     "398AD37EB687A225DC5E3E3A8CACB425"
     )
     loraBit.join(loraBit_freq_Plan.AS923)
-    basic.showString("join lorabit_demo_002")
+    basic.showString("join 001")
     basic.clearScreen()
-})
+}
+function joinABP () {
+    loraBit.reset()
+    loraBit.param_Config(
+    2,
+    7,
+    loraBit_ADR.On
+    )
+    loraBit.param_ABP(
+    "260413F9",
+    "7397A4B87CC59FF4C9118C3A23E78C54",
+    "AD08530B092DEF1AD58478547F17825C"
+    )
+    loraBit.join(loraBit_freq_Plan.AS923)
+    basic.showString("join 003 ABP")
+    basic.clearScreen()
+}
 function SendImmediate () {
     interval = input.runningTime()
     conf = true
@@ -30,7 +54,6 @@ loraBit.whenReceived(function () {
     if (loraBit.nacknowledged()) {
         basic.showIcon(IconNames.No)
     } else {
-        conf = false
         if (loraBit.getReceivedPort() == 99) {
             cayenneLPP.lpp_update(loraBit.getReceivedPayload())
             result = ["010000FF", "010064FF"].indexOf(loraBit.getReceivedPayload())
@@ -50,14 +73,10 @@ led.setBrightness(20)
 cayenneLPP.add_digital(LPP_Direction.Output_Port, DigitalPin.P1)
 cayenneLPP.add_sensor(LPP_Bit_Sensor.Temperature)
 interval = input.runningTime()
-conf = false
+conf = true
 let seqno = 0
 loraBit.Verbose(Verbose_Mode.On)
-loraBit.param_Config(
-2,
-7,
-loraBit_ADR.On
-)
+joinABP()
 basic.forever(function () {
     if (input.runningTime() > interval) {
         if (!(loraBit.available())) {
