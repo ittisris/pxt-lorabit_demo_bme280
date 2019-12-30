@@ -1,10 +1,11 @@
 {
-    "name": "pxt-lorabit_demo_bme280",
+    "name": "pxt-lorabit_demo_seqno",
     "dependencies": {
         "core": "*",
         "cayenne_lpp": "github:ittisris/pxt-cayenne_lpp#41d3d5cac34360a6b618139204d297c191e72821",
         "radio": "*",
-        "lorabit": "github:ittisris/pxt-lorabit#7c3027de7388501bd8b5287ab9f8a9e95a23afd2"
+        "lorabit": "github:ittisris/pxt-lorabit#7c3027de7388501bd8b5287ab9f8a9e95a23afd2",
+        "BME280": "github:makecode-extensions/bme280#839a5d67065f634a3fb652c3f9621433a8765bfa"
     },
     "description": "",
     "files": [
